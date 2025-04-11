@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane fx:id="pane" maxHeight="1000.0" maxWidth="1000.0" minHeight="400.0" minWidth="400.0" onMouseDragged="#handleDrag"
+      onMousePressed="#handleClick" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/23.0.1">
+</Pane>
