@@ -1,6 +1,6 @@
 # pan-tilt-laser
-A 2-axis tracking laser turret controlled via mouse input in a JavaFX GUI.  
-Currently tracks real-time cursor movement and sends servo commands to an Arduino-compatible microcontroller via serial communication.
+A 2-axis tracking laser controlled via mouse input in a JavaFX GUI.  
+Currently tracks real-time cursor movement and sends servo commands to microcontroller via serial communication.
 
 ## To-Do
 - Implement computer vision for autonomous tracking
