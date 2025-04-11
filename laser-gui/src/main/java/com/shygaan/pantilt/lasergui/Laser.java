@@ -43,7 +43,7 @@ public class Laser extends Application {
         int microY = (int) (map(angleY, Y_ANGLE_LOW, Y_ANGLE_HIGH, PULSE_LOW, Y_PULSE_HIGH));
         System.out.println("X: " + angleX);
         System.out.println("Y: " + angleY);
-        String command = String.format("X%.2fY%.2f\n", angleX, angleY);
+        String command = String.format("X%dY%d\n", microX, microY);
         serialPort.sendData(command);
     }
 
@@ -51,7 +51,7 @@ public class Laser extends Application {
     private int lastY = -1;
 
     private long lastSendTime = 0;
-    private static final long SEND_INTERVAL_MS = 50;
+    private static final long SEND_INTERVAL_MS = 25;
 
 
     @FXML
@@ -68,7 +68,7 @@ public class Laser extends Application {
         int microY = (int) (map(angleY, Y_ANGLE_LOW, Y_ANGLE_HIGH, PULSE_LOW, Y_PULSE_HIGH));
         System.out.println("X: " + angleX);
         System.out.println("Y: " + angleY);
-        String command = String.format("X%.2fY%.2f\n", angleX, angleY);
+        String command = String.format("X%dY%d\n", microX, microY);
         serialPort.sendData(command);
     }
 
