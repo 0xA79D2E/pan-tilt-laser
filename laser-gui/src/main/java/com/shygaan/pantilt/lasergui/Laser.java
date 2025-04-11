@@ -9,13 +9,22 @@ import javafx.stage.Stage;
 import com.fazecast.jSerialComm.SerialPort;
 
 
-
 import java.io.IOException;
 import java.io.Serial;
 
 
 public class Laser extends Application {
+    private static final int PULSE_LOW = 387;
+    private static final int X_PULSE_HIGH = 2400;
+    private static final int Y_PULSE_HIGH = 2300;
+    private static final int X_ANGLE_LOW = 0;
+    private static final int X_ANGLE_HIGH = 180;
+    private static final int Y_ANGLE_LOW = 0;
+    private static final int Y_ANGLE_HIGH = 128;
 
+    private int map(double value, double inMin, double inMax, double outMin, double outMax) {
+        return (int) (outMin + (value - inMin) * (outMax - outMin) / (inMax - inMin));
+    }
 
     @FXML
     private Pane pane;
@@ -28,8 +37,10 @@ public class Laser extends Application {
     public void handleClick(MouseEvent mouseEvent) {
         double x = mouseEvent.getX();
         double y = mouseEvent.getY();
-        double angleX = (180 - (x * 180 / pane.getWidth()));
-        double angleY = (y * 128 / pane.getHeight());
+        double angleX = X_ANGLE_HIGH - (x * X_ANGLE_HIGH / pane.getWidth());
+        double angleY = (y * Y_ANGLE_HIGH / pane.getHeight());
+        int microX = (int) (map(angleX, X_ANGLE_LOW, X_ANGLE_HIGH, PULSE_LOW, X_PULSE_HIGH));
+        int microY = (int) (map(angleY, Y_ANGLE_LOW, Y_ANGLE_HIGH, PULSE_LOW, Y_PULSE_HIGH));
         System.out.println("X: " + angleX);
         System.out.println("Y: " + angleY);
         String command = String.format("X%.2fY%.2f\n", angleX, angleY);
@@ -51,8 +62,10 @@ public class Laser extends Application {
 
         double x = mouseEvent.getX();
         double y = mouseEvent.getY();
-        double angleX = 180 - (x * 180 / pane.getWidth());
-        double angleY = (y * 128 / pane.getHeight());
+        double angleX = X_ANGLE_HIGH - (x * X_ANGLE_HIGH / pane.getWidth());
+        double angleY = (y * Y_ANGLE_HIGH / pane.getHeight());
+        int microX = (int) (map(angleX, X_ANGLE_LOW, X_ANGLE_HIGH, PULSE_LOW, X_PULSE_HIGH));
+        int microY = (int) (map(angleY, Y_ANGLE_LOW, Y_ANGLE_HIGH, PULSE_LOW, Y_PULSE_HIGH));
         System.out.println("X: " + angleX);
         System.out.println("Y: " + angleY);
         String command = String.format("X%.2fY%.2f\n", angleX, angleY);
